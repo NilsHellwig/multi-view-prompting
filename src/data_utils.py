@@ -27,20 +27,20 @@ def get_element_tokens(task):
 def get_orders(task, data, args, sents, labels):
     # Empfehlung: Optimale Reihenfolge der Elemente vorab 1x berechnen. 
     # uncomment to calculate orders from scratch
-    # if torch.cuda.is_available():
-    #     device = torch.device('cuda:0')
-    # else:
-    #     device = torch.device("cpu")
-    # tokenizer = T5Tokenizer.from_pretrained("t5-base")
-    # model = MyT5ForConditionalGenerationScore.from_pretrained(
-    #     "t5-base").to(device)
-    # optim_orders_all = choose_best_order_global(sents, labels, model,
-    #                                         tokenizer, device,
-    #                                         args.task)
+    if torch.cuda.is_available():
+        device = torch.device('cuda:0')
+    else:
+        device = torch.device("cpu")
+    tokenizer = T5Tokenizer.from_pretrained("t5-base")
+    model = MyT5ForConditionalGenerationScore.from_pretrained(
+        "t5-base").to(device)
+    optim_orders_all = choose_best_order_global(sents, labels, model,
+                                            tokenizer, device,
+                                            args.task)
     print(optim_orders_all)
 
     if args.single_view_type == 'rank':
-        orders = optim_orders_all[task][data] # delete [task][data] falls selber berechnet werden
+        orders = optim_orders_all#[task][data] # delete [task][data] falls selber berechnet werden
     elif args.single_view_type == 'rand':
         orders = [random.Random(args.seed).choice(
             optim_orders_all[task][data])]
