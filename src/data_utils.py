@@ -30,7 +30,7 @@ def get_orders(task, data, args, sents, labels):
         device = torch.device('cuda:0')
     else:
         device = torch.device("cpu")
-    tokenizer = T5Tokenizer.from_pretrained("t5-base").to(device)
+    tokenizer = T5Tokenizer.from_pretrained("t5-base")
     model = MyT5ForConditionalGenerationScore.from_pretrained(
         "t5-base").to(device)
     optim_orders_all = choose_best_order_global(sents, labels, model,
