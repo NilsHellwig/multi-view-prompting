@@ -36,6 +36,7 @@ def get_orders(task, data, args, sents, labels):
     optim_orders_all = choose_best_order_global(sents, labels, model,
                                             tokenizer, device,
                                             args.task)
+    print(optim_orders_all)
 
     if args.single_view_type == 'rank':
         orders = optim_orders_all[task][data]
@@ -125,8 +126,9 @@ def order_scores_function(quad_list, cur_sent, model, tokenizer, device, task):
     all_targets = []
     all_inputs = []
     cur_sent = " ".join(cur_sent)
+
     for each_order in all_orders:
-        cur_order = " ".join(each_order)
+        cur_order = "  ".join(each_order) + " "
         all_orders_list.append(cur_order)
         cur_target = []
         for each_q in quad_list:
@@ -209,9 +211,11 @@ def choose_best_order_global(sents, labels, model, tokenizer, device, task):
 
         order_scores = order_scores_function(quad_list, sent, model, tokenizer,
                                              device, task)
+
         for e in order_scores:
+            e = e[:-1].replace("  ", " ")
             index = all_orders_list.index(e)
-            scores[index] += order_scores[e]['entropy']
+            scores[index] += order_scores[e.replace(" ", "  ")+" "]['entropy']
 
     indexes = np.argsort(np.array(scores))  # [::-1]
     returned_orders = []
