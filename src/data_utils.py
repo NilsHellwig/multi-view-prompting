@@ -25,6 +25,7 @@ def get_element_tokens(task):
 
 
 def get_orders(task, data, args, sents, labels):
+    # Empfehlung: Optimale Reihenfolge der Elemente vorab 1x berechnen. 
     # uncomment to calculate orders from scratch
     # if torch.cuda.is_available():
     #     device = torch.device('cuda:0')
