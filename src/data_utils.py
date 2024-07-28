@@ -25,17 +25,17 @@ def get_element_tokens(task):
 
 
 def get_orders(task, data, args, sents, labels):
-    ## uncomment to calculate orders from scratch
-    # if torch.cuda.is_available():
-    #     device = torch.device('cuda:0')
-    # else:
-    #     device = torch.device("cpu")
-    # tokenizer = T5Tokenizer.from_pretrained("t5-base").to(device)
-    # model = MyT5ForConditionalGenerationScore.from_pretrained(
-    #     "t5-base").to(device)
-    # optim_orders_all = choose_best_order_global(sents, labels, model,
-    #                                         tokenizer, device,
-    #                                         args.task)
+    # uncomment to calculate orders from scratch
+    if torch.cuda.is_available():
+        device = torch.device('cuda:0')
+    else:
+        device = torch.device("cpu")
+    tokenizer = T5Tokenizer.from_pretrained("t5-base").to(device)
+    model = MyT5ForConditionalGenerationScore.from_pretrained(
+        "t5-base").to(device)
+    optim_orders_all = choose_best_order_global(sents, labels, model,
+                                            tokenizer, device,
+                                            args.task)
 
     if args.single_view_type == 'rank':
         orders = optim_orders_all[task][data]
