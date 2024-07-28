@@ -15,7 +15,7 @@ for TASK in aste
 do
 for DATA in ${TASK_DATA[${TASK}]}
 do
-for DATA_RATIO in 1.0
+for DATA_RATIO in 1.0 # Wir betrachten kein LRS, das geht mit run_low_resource.sh
 do
 for SEED in 5 10 15 20 25
 do
