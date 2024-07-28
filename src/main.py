@@ -607,6 +607,7 @@ def train_function(args):
                               top_k=args.top_k,
                               args=args,
                               max_len=args.max_seq_length)
+        
         for i in range(0, min(10, len(dataset))):
             data_sample = dataset[i]
             print(
