@@ -11,7 +11,7 @@ TASK_DATA[tasd]="rest15 rest16"
 cd src
 
 # for SVP_TYPE in heuristic rand rank 
-for TASK in aste
+for TASK in asqp
 do
 for DATA in ${TASK_DATA[${TASK}]}
 do
