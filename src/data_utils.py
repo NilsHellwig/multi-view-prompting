@@ -4,7 +4,7 @@ import numpy as np
 from itertools import permutations
 import torch
 from torch.utils.data import Dataset
-# from transformers import AdamW, T5Tokenizer, T5ForConditionalGeneration
+from transformers import AdamW, T5Tokenizer, T5ForConditionalGeneration
 
 from t5_score import MyT5ForConditionalGenerationScore
 from const import *
